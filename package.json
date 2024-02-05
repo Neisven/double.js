@@ -1,0 +1,43 @@
+{
+  "name": "@neisven/double.js",
+  "version": "0.0.1-readme",
+  "description": "Library for creating Discord bots using scripted Aoi syntax",
+  "main": "./src/index.js",
+  "typing": "./lib/typing/index.d.ts",
+  "scripts": {
+    "clean:lib": "rm -rf lib/",
+    "build:release": "npm run clean:lib && npm run build:tsc:main && npm run build:tsc:function",
+    "build:tsc:main": "tsc --project tsconfig.json",
+    "build:tsc:function": "tsc --project ./src/function/tsconfig.json"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neisven/double.js.git#main"
+  },
+  "keywords": [
+    "discord",
+    "aoi.js",
+    "aoi",
+    "doible",
+    "double.js",
+    "easy",
+    "easylib",
+    "discord.js",
+    "@aoitelegram/database"
+  ],
+  "author": "neisven",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Neisven/double.js/issue"
+  },
+  "homepage": "https://github.com/Neisven/double.js#readme",
+  "dependencies": {
+    "@aoitelegram/database": "^0.0.3",
+    "chalk": "^2.4.2",
+    "discord.js": "^14.14.1",
+    "figlet": "^1.7.0"
+  }
+}
