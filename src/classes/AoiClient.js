@@ -19,7 +19,7 @@ class DClient extends Base {
         intents: defaultGatewayIntentBits,
     });
     this.token = options.token;
-    this.prefix = this.prefix;
+    this.prefix = this.prefix || [];
     this.optionConsole =
       options.console === undefined ? true : options.console;
   }

@@ -3,14 +3,15 @@ module.exports = {
   callback: async (context) => {
     context.argsCheck(2);
     const [id, flag] = context.inside.split(";");
-    const guild = context.event.guild;
-    if (id && flag.toLowerCase() === "yes") {
+    const cleanId = id.replace(/<@|>/g, '');
+    if (flag.toLowerCase() === "yes") {
       try {
-        const member = await guild.members.fetch(id);
-        return member ? id : context.event.author.id;
+        const member = await context.event.guild.members.fetch(cleanId);
+        return member ? cleanId : context.event.author.id;
       } catch (error) {
-        return context.event.author.id;
+        console.error(`Error fetching member: ${error.message}`);
       }
     }
+    return context.event.author.id;
   },
 };

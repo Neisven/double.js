@@ -5,6 +5,6 @@ module.exports = {
     const [variable, value] = context.splits;
     if (context.isError) return;
 
-    return context.telegram.globalVars.set(variable, value);
+    return context.discord.globalVars.set(variable, value);
   },
 };

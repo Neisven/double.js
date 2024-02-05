@@ -1,6 +1,6 @@
 {
   "name": "@neisven/double.js",
-  "version": "0.0.2",
+  "version": "0.0.2-extends",
   "description": "Library for creating Discord bots using scripted Aoi syntax",
   "main": "./src/index.js",
   "typing": "./lib/typing/index.d.ts",
