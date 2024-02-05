@@ -10,7 +10,7 @@ execute terminal: `npm i @neisven/double.js`
 
 put in file:
 ```js
-const DClient = require("@neisven/double.js");
+const { DClient } = require("@neisven/double.js");
 const bot = new DClient({
   token: "your token",
   prefix: "!" // replace on your prefix!

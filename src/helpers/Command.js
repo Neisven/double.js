@@ -24,7 +24,7 @@ class Command {
       const commandIdentifier = messageArgs[0];
 
       if (!this.commands.length) return;
-
+      if(message.author.bot) return;
       for (const command of this.commands) {
         const aliasesRegex = new RegExp(
           `^!(?:${(command.aliases || []).join("|")})$`,

@@ -9,7 +9,7 @@ module.exports = {
       ? context.command.name
       : { event: context.command.name };
     try {
-      const response = await context.telegram.evaluateCommand(
+      const response = await context.discord.evaluateCommand(
         command,
         content,
         context.event,
