@@ -1,17 +1,23 @@
 module.exports = {
   name: "$mentioned",
   callback: async (context) => {
-    context.argsCheck(2);
-    const [id, flag] = context.inside.split(";");
-    const cleanId = id.replace(/<@|>/g, '');
-    if (flag.toLowerCase() === "yes") {
-      try {
-        const member = await context.event.guild.members.fetch(cleanId);
-        return member ? cleanId : context.event.author.id;
-      } catch (error) {
-        console.error(`Error fetching member: ${error.message}`);
-      }
+    const { event, splits } = context;
+    const [returnIndex, flag = "no"] = splits;
+
+    const hasValidInputs = returnIndex && ["yes", "no", "allmention"].includes(flag.toLowerCase());
+
+    if (!hasValidInputs || event.mentions.members.size === 0) {
+      return (flag.toLowerCase() === "yes") ? event.author.id : undefined;
     }
-    return context.event.author.id;
+
+    const mentionedMembers = Array.from(event.mentions.members.values());
+
+    const matrixLogic = {
+      yes: (index) => (!isNaN(index) && index > 0 && index <= mentionedMembers.length) ? mentionedMembers[index - 1].id : event.author.id,
+      allmention: () => mentionedMembers.map(member => member.id).join(","),
+      default: () => event.author.id,
+    };
+
+    return matrixLogic[flag.toLowerCase()](parseInt(returnIndex));
   },
 };
